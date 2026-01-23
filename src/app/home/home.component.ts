@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
-import {TripListComponent} from '../components/trip-list/trip-list.component';
+import { TripListComponent } from '../components/trip-list/trip-list.component';
+import { SkiListComponent } from '../components/ski-list/ski-list.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    TripListComponent
+    CommonModule,
+    TripListComponent,
+    SkiListComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  activeTab: 'trips' | 'skis' = 'trips';
 
+  selectTab(tab: 'trips' | 'skis') {
+    this.activeTab = tab;
+  }
 }
