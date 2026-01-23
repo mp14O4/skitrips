@@ -6,17 +6,64 @@
 
   width: 100%;
   height: 100%;
+
+  gap: 1rem; /* Space between trip cards */
+  padding: 1rem; /* Padding for the entire list */
+  box-sizing: border-box;
 }
 
-.trip {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  border: 1px solid black;
-  border-radius: 4px;
+.trip-card {
+  background-color: #ffffff; /* White background for the card */
+  border: 1px solid #e0e0e0; /* Light grey border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 1.5rem;
+  width: 100%; /* Take full width of the host */
+  max-width: 600px; /* Max width for readability */
+  box-sizing: border-box;
+  transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
 
-  padding: 1rem;
-  gap: 1rem;
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0; /* Separator for header */
+  padding-bottom: 0.5rem;
+}
+
+.trip-destination {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+}
+
+.trip-dates {
+  font-size: 0.9rem;
+  color: #757575;
+}
+
+.trip-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid for details */
+  gap: 0.8rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #9e9e9e; /* Muted label color */
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.value {
+  font-size: 1rem;
+  color: #424242;
 }

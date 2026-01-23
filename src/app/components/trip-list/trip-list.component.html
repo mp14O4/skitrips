@@ -1,15 +1,22 @@
 @for (trip of trips; track trip.id) {
-
-  <div class="trip">
-    <div>
-      {{ trip.start | date:'dd.MM.yyyy' }}
+  <div class="trip-card">
+    <div class="trip-header">
+      <h3 class="trip-destination">{{ trip.destination }}</h3>
+      <span class="trip-dates">{{ trip.start | date:'dd.MM.yyyy' }}</span>
     </div>
-    <div>
-      {{ trip.skiDays.length }} Tage
-    </div>
-    <div>
-      {{ trip.destination }}
+    <div class="trip-details">
+      <div class="detail-item">
+        <span class="label">Days:</span>
+        <span class="value">{{ trip.skiDays.length }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Price:</span>
+        <span class="value">{{ trip.people }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Description:</span>
+        <span class="value">{{ trip.description }}</span>
+      </div>
     </div>
   </div>
-
 }
