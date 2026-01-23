@@ -1,0 +1,15 @@
+@for (trip of trips; track trip.id) {
+
+  <div class="trip">
+    <div>
+      {{ trip.start | date:'dd.MM.yyyy' }}
+    </div>
+    <div>
+      {{ trip.skiDays.length }} Tage
+    </div>
+    <div>
+      {{ trip.destination }}
+    </div>
+  </div>
+
+}

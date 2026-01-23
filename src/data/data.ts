@@ -1,16 +1,19 @@
 export interface Season {
+  id: string;
+  name: string;
   trips: Trip[];
   passes: SeasonPass[];
   services: SkiService[];
 }
 
 export interface SeasonPass {
+  id: string;
   name: string;
   price: number;
 }
 
-
 export interface Trip {
+  id: string;
   start: Date;
   // TODO these get generated automatically from the initial destination + trip length
   skiDays: SkiDay[];

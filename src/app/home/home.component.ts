@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import {TripListComponent} from '../components/trip-list/trip-list.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [
+    TripListComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
