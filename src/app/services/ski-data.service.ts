@@ -6,10 +6,32 @@ import {SKIS} from '../../data/example';
   providedIn: 'root'
 })
 export class SkiDataService {
+  private readonly storageKey = 'skitrips_skis';
+  private skis: Ski[] = [];
 
-  private skis: Ski[] = [...SKIS];
+  constructor() {
+    this.loadFromStorage();
+  }
 
-  constructor() { }
+  private loadFromStorage(): void {
+    const json = localStorage.getItem(this.storageKey);
+    if (json) {
+      const storedSkis = JSON.parse(json) as Ski[];
+      // Revive date objects
+      storedSkis.forEach(ski => {
+        ski.services.forEach(service => {
+          service.date = new Date(service.date);
+        });
+      });
+      this.skis = storedSkis;
+    } else {
+      this.skis = [];
+    }
+  }
+
+  private saveToStorage(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.skis));
+  }
 
   getSkis(): Ski[] {
     return this.skis;
@@ -20,14 +42,20 @@ export class SkiDataService {
   }
 
   addSki(ski: Ski): void {
-    // In a real app, this would be an HTTP call
+    this.skis.push(ski);
+    this.saveToStorage();
   }
 
   updateSki(ski: Ski): void {
-    // In a real app, this would be an HTTP call
+    const index = this.skis.findIndex(s => s.id === ski.id);
+    if (index > -1) {
+      this.skis[index] = ski;
+      this.saveToStorage();
+    }
   }
 
   deleteSki(id: string): void {
-    // In a real app, this would be an HTTP call
+    this.skis = this.skis.filter(ski => ski.id !== id);
+    this.saveToStorage();
   }
 }

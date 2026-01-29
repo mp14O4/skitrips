@@ -1,15 +1,36 @@
 import { Injectable } from '@angular/core';
 import {Season, Trip} from '../../data/data';
-import {WINTER_25_26} from '../../data/example';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeasonTripService {
+  private readonly storageKey = 'skitrips_seasons';
+  private seasons: Season[] = [];
 
-  private seasons: [Season] = [WINTER_25_26];
+  constructor() {
+    this.loadFromStorage();
+  }
 
-  constructor() { }
+  private loadFromStorage(): void {
+    const json = localStorage.getItem(this.storageKey);
+    if (json) {
+      const storedSeasons = JSON.parse(json) as Season[];
+      // Revive date objects
+      storedSeasons.forEach(season => {
+        season.trips.forEach(trip => {
+          trip.start = new Date(trip.start);
+        });
+      });
+      this.seasons = storedSeasons;
+    } else {
+      this.seasons = [];
+    }
+  }
+
+  private saveToStorage(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.seasons));
+  }
 
   getSeason(seasonId?: string): Season | undefined {
     if (!seasonId) {
@@ -18,7 +39,6 @@ export class SeasonTripService {
     return this.seasons.find(s => s.id === seasonId);
   }
 
-  // TODO might not even need this
   getTrip(seasonId: string, id: string): Trip | undefined {
     const season = this.seasons.find(s => s.id === seasonId);
     return season?.trips.find(trip => trip.id === id);
@@ -27,21 +47,28 @@ export class SeasonTripService {
   addTrip(seasonId: string, trip: Trip): void {
     const season = this.getSeason(seasonId);
     if (!season) {
-      throw 'Season not found.';
+      throw new Error('Season not found.');
     }
     season.trips.push(trip);
+    this.saveToStorage();
   }
 
-  // TODO this is not needed at first
-  updateTrip(trip: Trip): void {
-    // const index = this.currentSeason.trips.findIndex(t => t.id === trip.id);
-    // this.currentSeason.trips.splice(index, 1);
-    // this.currentSeason.trips.push(trip);
+  updateTrip(seasonId: string, updatedTrip: Trip): void {
+    const season = this.getSeason(seasonId);
+    if (season) {
+      const index = season.trips.findIndex(t => t.id === updatedTrip.id);
+      if (index > -1) {
+        season.trips[index] = updatedTrip;
+        this.saveToStorage();
+      }
+    }
   }
 
-  // TODO impl with storage later
-  deleteTrip(id: string): void {
-    // const index = this.currentSeason.trips.findIndex(t => t.id === id);
-    // this.currentSeason.trips.splice(index, 1);
+  deleteTrip(seasonId: string, tripId: string): void {
+    const season = this.getSeason(seasonId);
+    if (season) {
+      season.trips = season.trips.filter(t => t.id !== tripId);
+      this.saveToStorage();
+    }
   }
 }

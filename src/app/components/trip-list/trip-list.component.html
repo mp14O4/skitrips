@@ -1,26 +1,33 @@
-@if (season && season.trips) {
-  @for (trip of season?.trips; track trip.id) {
-    <div class="trip-card" (click)="openTrip(trip)">
-      <div class="trip-header">
-        <h3 class="trip-destination">{{ trip.destination }}</h3>
-        <span class="trip-dates">{{ trip.start | date:'dd.MM.yyyy' }}</span>
+<div class="trip-list-container">
+  <div class="header">
+    <h1>Trips</h1>
+    <button class="btn btn-primary" (click)="addTrip()">Add Trip</button>
+  </div>
+
+  @if (season && season.trips) {
+    @for (trip of season?.trips; track trip.id) {
+      <div class="trip-card" (click)="openTrip(trip)">
+        <div class="trip-header">
+          <h3 class="trip-destination">{{ trip.destination }}</h3>
+          <span class="trip-dates">{{ trip.start | date:'dd.MM.yyyy' }}</span>
+        </div>
+        <div class="trip-details">
+          <div class="detail-item">
+            <span class="label">Days:</span>
+            <span class="value">{{ trip.skiDays.length }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Price:</span>
+            <span class="value">{{ trip.people }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Description:</span>
+            <span class="value">{{ trip.description }}</span>
+          </div>
+        </div>
       </div>
-      <div class="trip-details">
-        <div class="detail-item">
-          <span class="label">Days:</span>
-          <span class="value">{{ trip.skiDays.length }}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Price:</span>
-          <span class="value">{{ trip.people }}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Description:</span>
-          <span class="value">{{ trip.description }}</span>
-        </div>
-      </div>
-    </div>
+    }
+  } @else {
+    no season or trips found yet!
   }
-} @else {
-  no season or trips found yet!
-}
+</div>

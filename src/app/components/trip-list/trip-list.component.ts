@@ -26,4 +26,8 @@ export class TripListComponent {
   openTrip(trip: Trip) {
     this.router.navigate([`/season/${this.season!.id}/trip/${trip.id}`]);
   }
+
+  addTrip(): void {
+    this.router.navigate([`/season/${this.season!.id}/trip/new`]);
+  }
 }

@@ -45,7 +45,7 @@ export enum ServiceJob {
 
 export interface Ski {
   id: string;
-  company: string;
+  brand: string;
   model: string;
   year: number;
   // TODO add some specs here (radius, width (middle, tail, tip), length)

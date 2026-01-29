@@ -15,7 +15,7 @@ const service2: SkiService = {
 
 const ski1: Ski = {
   id: 'am-ski-1',
-  company: 'Völkl',
+  brand: 'Völkl',
   model: 'Mantra M6',
   year: 2024,
   services: [service1]
@@ -23,7 +23,7 @@ const ski1: Ski = {
 
 const ski2: Ski = {
   id: 'powder-ski-1',
-  company: 'Armada',
+  brand: 'Armada',
   model: 'JJ',
   year: 2023,
   services: [service2]

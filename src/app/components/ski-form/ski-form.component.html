@@ -1,11 +1,11 @@
 @if (ski) {
 <div class="ski-form-container">
-  <h1>{{ ski.company }} {{ ski.model }} ({{ ski.year }})</h1>
+  <h1>{{ ski.brand }} {{ ski.model }} ({{ ski.year }})</h1>
 
   <div class="general-data">
     <div class="input-item">
       <label>Company</label>
-      <input type="text" [(ngModel)]="ski.company">
+      <input type="text" [(ngModel)]="ski.brand">
     </div>
     <div class="input-item">
       <label>Model</label>
@@ -47,7 +47,7 @@
   <button class="add-service-btn" (click)="addService()">Add Service</button>
 
   <div class="form-actions">
-    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-primary" (click)="save()">Save</button>
     <button class="btn btn-secondary" (click)="back()">Back</button>
   </div>
 </div>

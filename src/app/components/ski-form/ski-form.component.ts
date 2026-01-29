@@ -33,7 +33,18 @@ export class SkiFormComponent implements OnInit {
     private readonly skiDataService: SkiDataService,
     private location: Location,
   ) {
-    this.ski = skiDataService.getSki(route.snapshot.params['id']);
+    const skiId = this.route.snapshot.params['id'];
+    if (skiId === 'new') {
+      this.ski = {
+        id: `new-${Date.now()}`,
+        brand: '',
+        model: '',
+        year: new Date().getFullYear(),
+        services: []
+      };
+    } else {
+      this.ski = this.skiDataService.getSki(skiId);
+    }
     if (!this.ski) {
       this.location.back();
     }
@@ -73,6 +84,17 @@ export class SkiFormComponent implements OnInit {
       if (index > -1) {
         service.jobs.splice(index, 1);
       }
+    }
+  }
+
+  save(): void {
+    if (this.ski) {
+      if (this.ski.id.startsWith('new-')) {
+        this.skiDataService.addSki(this.ski);
+      } else {
+        this.skiDataService.updateSki(this.ski);
+      }
+      this.back();
     }
   }
 

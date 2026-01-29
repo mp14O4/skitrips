@@ -20,6 +20,7 @@ export class TripFormComponent implements OnInit {
 
   trip?: Trip;
   startDateString?: string;
+  seasonId: string;
 
   availableSkis: Ski[] = [];
   showDayDestinationInput: Map<string, boolean> = new Map();
@@ -30,12 +31,36 @@ export class TripFormComponent implements OnInit {
     private skiDataService: SkiDataService,
     private location: Location,
   ) {
-    const season = this.route.snapshot.params['season'];
+    this.seasonId = this.route.snapshot.params['season'];
     const tripId = this.route.snapshot.params['trip'];
-    this.trip = this.tripService.getTrip(season, tripId);
+
+    if (tripId === 'new') {
+      this.trip = {
+        id: `new-${Date.now()}`, // Generate a unique ID
+        start: new Date(),
+        skiDays: [],
+        destination: '',
+        description: '',
+        people: '',
+        regularPrice: 0,
+        actualPrice: 0,
+      };
+    } else {
+      this.trip = this.tripService.getTrip(this.seasonId, tripId);
+    }
     this.availableSkis = this.skiDataService.getSkis();
   }
 
+  save(): void {
+    if (this.trip && this.seasonId) {
+      if (this.trip.id.startsWith('new-')) { // Check if it's a new trip
+        this.tripService.addTrip(this.seasonId, this.trip);
+      } else {
+        this.tripService.updateTrip(this.seasonId, this.trip);
+      }
+      this.back(); // Go back after saving
+    }
+  }
   ngOnInit(): void {
     if (this.trip) {
       this.startDateString = this.toYYYYMMDD(this.trip.start);

@@ -4,6 +4,9 @@
     <h1>
       {{ trip.start | date:'dd.MM.yyyy' }} - {{ trip.skiDays.length }} Tag(e) - {{ trip.destination }}
     </h1>
+    <button class="toggle-destination-btn" (click)="save()">
+      Speichern
+    </button>
     <button class="toggle-destination-btn" (click)="back()">
       Zurück
     </button>
@@ -49,7 +52,7 @@
                 <input type="checkbox"
                        [checked]="isSkiSelected(skiDay, ski)"
                        (change)="onSkiSelectionChange($event, skiDay, ski)">
-                {{ski.name}}
+                {{ ski.brand }} {{ ski.model }}
               </label>
             }
           </div>

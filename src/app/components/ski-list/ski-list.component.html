@@ -1,6 +1,12 @@
-@for (ski of skis; track ski.id) {
-  <div class="ski-card" (click)="open(ski)">
-    <h3 class="ski-name">{{ ski.company }} {{ ski.model }} ({{ ski.year }})</h3>
-
+<div class="ski-list-container">
+  <div class="header">
+    <h1>Skis</h1>
+    <button class="btn btn-primary" (click)="addSki()">Add Ski</button>
   </div>
-}
+
+  @for (ski of skis; track ski.id) {
+    <div class="ski-card" (click)="open(ski)">
+      <h3 class="ski-name">{{ ski.brand }} {{ ski.model }} ({{ ski.year }})</h3>
+    </div>
+  }
+</div>

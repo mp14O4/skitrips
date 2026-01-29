@@ -23,4 +23,8 @@ export class SkiListComponent {
   open(ski: Ski) {
     this.router.navigate([`/ski/${ski.id}`]);
   }
+
+  addSki(): void {
+    this.router.navigate([`/ski/new`]);
+  }
 }
