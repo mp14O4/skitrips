@@ -1,8 +1,18 @@
 @if (trip) {
-  <h1>
-    {{ trip.start | date:'dd.MM.yyyy' }} - {{ trip.skiDays.length }} Tage
-  </h1>
+<div class="trip-form-container">
+  <div class="header">
+    <h1>
+      {{ trip.start | date:'dd.MM.yyyy' }} - {{ trip.skiDays.length }} Tag(e) - {{ trip.destination }}
+    </h1>
+    <button class="toggle-destination-btn" (click)="back()">
+      Zurück
+    </button>
+  </div>
   <div class="general-data">
+    <div class="input-item">
+      <label>Startdatum</label>
+      <input type="date" [(ngModel)]="startDateString" (ngModelChange)="updateTripStartDate()">
+    </div>
     <div class="input-item">
       <label>Ziel</label>
       <input type="text" [(ngModel)]="trip.destination">
@@ -11,6 +21,8 @@
       <label>Notiz</label>
       <input type="text" [(ngModel)]="trip.description">
     </div>
+  </div>
+  <div class="general-data">
     <div class="input-item">
       <label>Wer war dabei?</label>
       <input type="text" [(ngModel)]="trip.people">
@@ -27,17 +39,39 @@
   <div class="ski-days">
     @for (skiDay of trip.skiDays; track skiDay.id) {
       <div class="ski-day">
+        <button class="remove-day-btn" (click)="removeSkiDay(skiDay)">X</button>
       <!-- TODO calculate date -->
-        <div>
+        <div class="input-item">
           <label>Ski</label>
-          <input>
-          <!-- TODO dropdown input for ski -->
+          <div class="checkbox-group">
+            @for (ski of availableSkis; track ski.id) {
+              <label class="checkbox-label">
+                <input type="checkbox"
+                       [checked]="isSkiSelected(skiDay, ski)"
+                       (change)="onSkiSelectionChange($event, skiDay, ski)">
+                {{ski.name}}
+              </label>
+            }
+          </div>
+        </div>
+        <div class="input-item">
+          <label>Tages-Ziel</label>
+          <button class="toggle-destination-btn" (click)="toggleDayDestinationInput(skiDay.id)">
+            @if (showDayDestinationInput.get(skiDay.id)) {
+              Trip-Ziel nutzen
+            } @else {
+              Ziel überschreiben
+            }
+          </button>
+          @if (showDayDestinationInput.get(skiDay.id)) {
+            <input type="text" [(ngModel)]="skiDay.dayDestination">
+          }
         </div>
       </div>
     }
-
+    <button class="add-day-btn" (click)="addSkiDay()">Skitag hinzufügen</button>
   </div>
-
+</div>
 } @else {
   loading...
 }

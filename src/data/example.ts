@@ -1,13 +1,28 @@
-import {Season, SeasonPass, Ski, SkiService, Trip} from './data';
+import {Season, SeasonPass, ServiceJob, Ski, SkiService, Trip} from './data';
+
+
+const service1: SkiService = {
+  id: 'service-1',
+  date: new Date('2025-11-15'),
+  jobs: [ServiceJob.WAX]
+};
+
+const service2: SkiService = {
+  id: 'service-2',
+  date: new Date('2026-01-10'),
+  jobs: [ServiceJob.WAX, ServiceJob.EDGES]
+};
 
 const ski1: Ski = {
   id: 'am-ski-1',
   name: 'Völkl Mantra M6',
+  services: [service1]
 };
 
 const ski2: Ski = {
   id: 'powder-ski-1',
   name: 'Armada JJ',
+  services: [service2]
 };
 
 export const SKIS: Ski[] = [ski1, ski2];
@@ -16,8 +31,8 @@ const trip1: Trip = {
   id: 'trip-1',
   start: new Date('2025-12-20'),
   skiDays: [
-    { ski: [ski1], id: '1day1' },
-    { ski: [ski1], id: '1day2' },
+    { ski: [ski1], id: '1day1', dayDestination: 'Zermatt' },
+    { ski: [ski1], id: '1day2', dayDestination: 'Zermatt' },
   ],
   destination: 'Zermatt, Switzerland',
   description: 'A weekend trip to Zermatt to enjoy the pre-Christmas slopes.',
@@ -30,10 +45,10 @@ const trip2: Trip = {
   id: 'trip-2',
   start: new Date('2025-12-29'),
   skiDays: [
-    { ski: [ski1], id: '2day1' },
-    { ski: [ski2], id: '2day2' },
-    { ski: [ski2], id: '2day3' },
-    { ski: [ski1], id: '2day4' },
+    { ski: [ski1], id: '2day1', dayDestination: 'Chamonix' },
+    { ski: [ski2], id: '2day2', dayDestination: 'Courmayeur' },
+    { ski: [ski2], id: '2day3', dayDestination: 'Chamonix' },
+    { ski: [ski1], id: '2day4', dayDestination: 'Chamonix' },
   ],
   destination: 'Chamonix, France',
   description: 'Celebrating the new year in the French Alps.',
@@ -54,15 +69,6 @@ const pass2: SeasonPass = {
   price: 1100,
 };
 
-const service1: SkiService = {
-  ski: ski1,
-  date: new Date('2025-11-15'),
-};
-
-const service2: SkiService = {
-  ski: ski2,
-  date: new Date('2026-01-10'),
-};
 
 export const WINTER_25_26: Season = {
   id: 'season-1',

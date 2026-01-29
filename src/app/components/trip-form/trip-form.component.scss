@@ -1,0 +1,161 @@
+:host {
+  display: block;
+  padding: 2rem;
+}
+
+.trip-form-container {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      margin-right: 2rem;
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+      flex: 1;
+    }
+  }
+
+  .general-data {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .input-item {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      margin-bottom: 0.5rem;
+
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+      }
+    }
+  }
+
+  .ski-days {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    border-top: 2px solid #eee;
+    padding-top: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .ski-day {
+      position: relative;
+      background-color: #fff;
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .remove-day-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #eee;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    &:hover {
+      background: #ddd;
+    }
+  }
+
+  .add-day-btn {
+    align-self: flex-start;
+    margin-top: 1rem;
+    padding: 0.8rem 1.2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.8rem; /* Adjusted to match input padding */
+    border: 1px solid #ccc; /* Ensure border is consistent */
+    border-radius: 4px;
+    margin-bottom: 0.5rem; /* Consistent spacing */
+  }
+
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
+
+      .toggle-destination-btn {
+        margin-bottom: 0.5rem; /* Add margin-bottom to button for consistent spacing */
+        padding: 0.5rem 1rem;
+        background-color: #f0f0f0;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e0e0e0;
+        }
+      }
+    }

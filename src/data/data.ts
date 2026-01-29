@@ -29,17 +29,24 @@ export interface Trip {
 export interface SkiDay {
   id: string;
   ski: Ski[];
-  destinationOverride?: string; // TODO how can we best design this?
+  dayDestination?: string;
 }
 
 export interface SkiService {
-  ski: Ski;
+  id: string;
   date: Date;
+  jobs: ServiceJob[];
 }
 
+export enum ServiceJob {
+  WAX, EDGES, REPAIR
+}
+
+// TODO might add some specs here as well (radius, width (middle, tail, tip), length)
 export interface Ski {
   id: string;
   name: string;
+  services: SkiService[];
 }
 
 // description:
