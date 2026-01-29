@@ -136,26 +136,26 @@
     margin-bottom: 0.5rem; /* Consistent spacing */
   }
 
-      .checkbox-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        cursor: pointer;
-      }
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
 
-      .toggle-destination-btn {
-        margin-bottom: 0.5rem; /* Add margin-bottom to button for consistent spacing */
-        padding: 0.5rem 1rem;
-        background-color: #f0f0f0;
-        color: #333;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: background-color 0.3s;
+  .toggle-destination-btn {
+    margin-bottom: 0.5rem; /* Add margin-bottom to button for consistent spacing */
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
 
-        &:hover {
-          background-color: #e0e0e0;
-        }
-      }
+    &:hover {
+      background-color: #e0e0e0;
     }
+  }
+}

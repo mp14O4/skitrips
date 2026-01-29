@@ -39,20 +39,15 @@ export interface SkiService {
 }
 
 export enum ServiceJob {
-  WAX, EDGES, REPAIR
+  WAX = 'WAX', EDGES = 'EDGES', REPAIR = 'REPAIR'
 }
 
-// TODO might add some specs here as well (radius, width (middle, tail, tip), length)
+
 export interface Ski {
   id: string;
-  name: string;
+  company: string;
+  model: string;
+  year: number;
+  // TODO add some specs here (radius, width (middle, tail, tip), length)
   services: SkiService[];
 }
-
-// description:
-//  home page has two groups: ski trips and skis
-//  trips group has a dropdown on the top to select the season
-//  i can add a trip
-//  in the creation page for a trip, i can input basic data except SkiDays.
-//  instead, there is a number input for the amount of days
-//  when i create a trip, the SkiDays are created automatically from the amount.

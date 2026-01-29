@@ -6,7 +6,6 @@ import { SkiFormComponent } from './components/ski-form/ski-form.component';
 export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'season/:season/trip/:trip', component: TripFormComponent },
-    { path: 'ski/new', component: SkiFormComponent },
-    { path: 'ski/edit/:id', component: SkiFormComponent },
+    { path: 'ski/:id', component: SkiFormComponent },
     { path: '**', redirectTo: '' }
 ];

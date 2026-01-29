@@ -1,5 +1,58 @@
-<h1>
-  {{ ski.name }}
-</h1>
+@if (ski) {
+<div class="ski-form-container">
+  <h1>{{ ski.company }} {{ ski.model }} ({{ ski.year }})</h1>
+
+  <div class="general-data">
+    <div class="input-item">
+      <label>Company</label>
+      <input type="text" [(ngModel)]="ski.company">
+    </div>
+    <div class="input-item">
+      <label>Model</label>
+      <input type="text" [(ngModel)]="ski.model">
+    </div>
+    <div class="input-item">
+      <label>Year</label>
+      <input type="number" [(ngModel)]="ski.year">
+    </div>
+  </div>
+
+  <h2>Services</h2>
+  <div class="services-list">
+    @for (service of ski.services; track service.id) {
+      <div class="service-card">
+        <button class="remove-service-btn" (click)="removeService(service)">X</button>
+        <div class="input-item">
+          <label>Datum</label>
+          <input type="date"
+                 [ngModel]="serviceDates.get(service.id)"
+                 (ngModelChange)="updateServiceDate(service, $event)">
+        </div>
+        <div class="input-item">
+          <label>Jobs</label>
+          <div class="checkbox-group">
+            @for (job of availableJobs; track job) {
+              <label class="checkbox-label">
+                <input type="checkbox"
+                       [checked]="isJobSelected(service, job)"
+                       (change)="onJobSelectionChange($event, service, job)">
+                {{ jobTranslations[job] }}
+              </label>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <button class="add-service-btn" (click)="addService()">Add Service</button>
+
+  <div class="form-actions">
+    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-secondary" (click)="back()">Back</button>
+  </div>
+</div>
+} @else {
+  loading...
+}
 
 
