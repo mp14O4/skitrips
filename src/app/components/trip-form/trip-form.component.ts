@@ -34,20 +34,7 @@ export class TripFormComponent implements OnInit {
     this.seasonId = this.route.snapshot.params['season'];
     const tripId = this.route.snapshot.params['trip'];
 
-    if (tripId === 'new') {
-      this.trip = {
-        id: `new-${Date.now()}`, // Generate a unique ID
-        start: new Date(),
-        skiDays: [],
-        destination: '',
-        description: '',
-        people: '',
-        regularPrice: 0,
-        actualPrice: 0,
-      };
-    } else {
-      this.trip = this.tripService.getTrip(this.seasonId, tripId);
-    }
+    this.trip = this.tripService.getTrip(this.seasonId, tripId);
     this.availableSkis = this.skiDataService.getSkis();
   }
 

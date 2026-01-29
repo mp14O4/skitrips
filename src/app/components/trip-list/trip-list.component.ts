@@ -3,6 +3,7 @@ import {Season, Trip} from '../../../data/data';
 import {SeasonTripService} from '../../services/season-trip.service';
 import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
+import {generateUuid} from '../../tooling/misc';
 
 @Component({
   selector: 'app-trip-list',
@@ -28,6 +29,17 @@ export class TripListComponent {
   }
 
   addTrip(): void {
-    this.router.navigate([`/season/${this.season!.id}/trip/new`]);
+    const trip: Trip = {
+      id: generateUuid(),
+      description: '',
+      destination: '',
+      people: '',
+      actualPrice: 0,
+      regularPrice: 0,
+      skiDays: [],
+      start: new Date()
+    };
+    this.tripService.addTrip(this.season!.id, trip);
+    this.router.navigate([`/season/${this.season!.id}/trip/${trip.id}`]);
   }
 }

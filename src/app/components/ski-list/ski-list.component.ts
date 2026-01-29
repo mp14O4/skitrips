@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {SkiDataService} from '../../services/ski-data.service';
 import {Ski} from '../../../data/data';
 import {Router} from '@angular/router';
+import {generateUuid} from '../../tooling/misc';
 
 @Component({
   selector: 'app-ski-list',
@@ -25,6 +26,14 @@ export class SkiListComponent {
   }
 
   addSki(): void {
-    this.router.navigate([`/ski/new`]);
+    const ski: Ski = {
+      id: generateUuid(),
+      brand: '', // TODO random brands would be funny
+      model: '',
+      year: new Date().getFullYear(),
+      services: []
+    };
+    this.skiDataService.addSki(ski);
+    this.router.navigate([`/ski/${ski.id}`]);
   }
 }
