@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Ski} from '../../../data/data';
 
 @Component({
   selector: 'app-ski-form',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './ski-form.component.scss'
 })
 export class SkiFormComponent {
+
+  ski: Ski = {
+    id: '',
+    name: ''
+  };
 
 }

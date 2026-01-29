@@ -27,6 +27,7 @@ export interface Trip {
 }
 
 export interface SkiDay {
+  id: string;
   ski: Ski[];
   destinationOverride?: string; // TODO how can we best design this?
 }

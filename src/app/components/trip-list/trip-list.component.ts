@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {Trip} from '../../../data/data';
-import {TripService} from '../../services/trip.service';
+import {Season, Trip} from '../../../data/data';
+import {SeasonTripService} from '../../services/season-trip.service';
 import {DatePipe} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-trip-list',
@@ -13,10 +14,16 @@ import {DatePipe} from '@angular/common';
 })
 export class TripListComponent {
 
-  trips: Trip[] = [];
+  season?: Season;
 
-  constructor(private readonly tripService: TripService) {
-    this.trips = tripService.getTrips();
+  constructor(
+    private readonly tripService: SeasonTripService,
+    private readonly router: Router,
+  ) {
+    this.season = tripService.getSeason();
   }
 
+  openTrip(trip: Trip) {
+    this.router.navigate([`/season/${this.season!.id}/trip/${trip.id}`]);
+  }
 }

@@ -1,1 +1,44 @@
-<p>trip-form works!</p>
+@if (trip) {
+  <h1>
+    {{ trip.start | date:'dd.MM.yyyy' }} - {{ trip.skiDays.length }} Tage
+  </h1>
+  <div class="general-data">
+    <div class="input-item">
+      <label>Ziel</label>
+      <input type="text" [(ngModel)]="trip.destination">
+    </div>
+    <div class="input-item">
+      <label>Notiz</label>
+      <input type="text" [(ngModel)]="trip.description">
+    </div>
+    <div class="input-item">
+      <label>Wer war dabei?</label>
+      <input type="text" [(ngModel)]="trip.people">
+    </div>
+    <div class="input-item">
+      <label>Preis regulär</label>
+      <input type="number" [(ngModel)]="trip.regularPrice">
+    </div>
+    <div class="input-item">
+      <label>Preis tatsächlich</label>
+      <input type="number" [(ngModel)]="trip.actualPrice">
+    </div>
+  </div>
+  <div class="ski-days">
+    @for (skiDay of trip.skiDays; track skiDay.id) {
+      <div class="ski-day">
+      <!-- TODO calculate date -->
+        <div>
+          <label>Ski</label>
+          <input>
+          <!-- TODO dropdown input for ski -->
+        </div>
+      </div>
+    }
+
+  </div>
+
+} @else {
+  loading...
+}
+
