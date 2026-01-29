@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Season, Trip} from '../../data/data';
+import {generateUuid} from '../tooling/misc';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,22 @@ export class SeasonTripService {
       return this.seasons[0];
     }
     return this.seasons.find(s => s.id === seasonId);
+  }
+
+  getSeasons(): Season[] {
+    return this.seasons;
+  }
+
+  addSeason(seasonName: string): Season {
+    const newSeason: Season = {
+      id: generateUuid(),
+      name: seasonName,
+      trips: [],
+      passes: []
+    };
+    this.seasons.unshift(newSeason);
+    this.saveToStorage();
+    return newSeason;
   }
 
   getTrip(seasonId: string, id: string): Trip | undefined {

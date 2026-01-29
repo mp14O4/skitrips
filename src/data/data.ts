@@ -3,7 +3,6 @@ export interface Season {
   name: string;
   trips: Trip[];
   passes: SeasonPass[];
-  services: SkiService[];
 }
 
 export interface SeasonPass {

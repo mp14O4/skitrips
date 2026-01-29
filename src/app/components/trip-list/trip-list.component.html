@@ -1,11 +1,20 @@
 <div class="trip-list-container">
   <div class="header">
     <h1>Trips</h1>
+    <div class="season-selector">
+      <label for="season-select">Season:</label>
+      <select id="season-select" [ngModel]="selectedSeason?.id" (ngModelChange)="onSeasonChange($event)">
+        @for (season of seasons; track season.id) {
+          <option [value]="season.id">{{ season.name }}</option>
+        }
+        <option value="new_season">Add New Season...</option>
+      </select>
+    </div>
     <button class="btn btn-primary" (click)="addTrip()">Add Trip</button>
   </div>
 
-  @if (season && season.trips) {
-    @for (trip of season?.trips; track trip.id) {
+  @if (selectedSeason && selectedSeason.trips) {
+    @for (trip of selectedSeason.trips; track trip.id) {
       <div class="trip-card" (click)="openTrip(trip)">
         <div class="trip-header">
           <h3 class="trip-destination">{{ trip.destination }}</h3>

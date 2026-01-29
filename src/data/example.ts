@@ -78,6 +78,5 @@ export const WINTER_25_26: Season = {
   id: 'season-1',
   name: '2025/2026',
   trips: [trip1, trip2],
-  passes: [pass1, pass2],
-  services: [service1, service2],
+  passes: [pass1, pass2]
 };

@@ -2,15 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {ServiceJob, Ski, SkiService} from '../../../data/data';
 import {SkiDataService} from '../../services/ski-data.service';
 import {ActivatedRoute} from '@angular/router';
-import {DatePipe, Location, NgForOf} from '@angular/common';
+import {Location} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-ski-form',
   imports: [
     FormsModule,
-    DatePipe,
-    NgForOf
   ],
   templateUrl: './ski-form.component.html',
   styleUrl: './ski-form.component.scss'
