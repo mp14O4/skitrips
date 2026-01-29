@@ -2,15 +2,15 @@
   <div class="header">
     <h1>Trips</h1>
     <div class="season-selector">
-      <label for="season-select">Season:</label>
+      <label for="season-select">Saison:</label>
       <select id="season-select" [ngModel]="selectedSeason?.id" (ngModelChange)="onSeasonChange($event)">
         @for (season of seasons; track season.id) {
           <option [value]="season.id">{{ season.name }}</option>
         }
-        <option value="new_season">Add New Season...</option>
+        <option value="new_season">Neue Saison hinzufügen...</option>
       </select>
     </div>
-    <button class="btn btn-primary" (click)="addTrip()">Add Trip</button>
+    <button class="btn btn-primary" (click)="addTrip()">Trip hinzufügen</button>
   </div>
 
   @if (selectedSeason && selectedSeason.trips) {
@@ -22,21 +22,21 @@
         </div>
         <div class="trip-details">
           <div class="detail-item">
-            <span class="label">Days:</span>
+            <span class="label">Tage:</span>
             <span class="value">{{ trip.skiDays.length }}</span>
           </div>
           <div class="detail-item">
-            <span class="label">Price:</span>
+            <span class="label">Dabei:</span>
             <span class="value">{{ trip.people }}</span>
           </div>
           <div class="detail-item">
-            <span class="label">Description:</span>
+            <span class="label">Beschreibung:</span>
             <span class="value">{{ trip.description }}</span>
           </div>
         </div>
       </div>
     }
   } @else {
-    no season or trips found yet!
+    Noch keine Saison oder Reisen gefunden!
   }
 </div>

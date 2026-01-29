@@ -4,12 +4,6 @@
     <h1>
       {{ trip.start | date:'dd.MM.yyyy' }} - {{ trip.skiDays.length }} Tag(e) - {{ trip.destination }}
     </h1>
-    <button class="toggle-destination-btn" (click)="save()">
-      Speichern
-    </button>
-    <button class="toggle-destination-btn" (click)="back()">
-      Zurück
-    </button>
   </div>
   <div class="general-data">
     <div class="input-item">
@@ -74,8 +68,13 @@
     }
     <button class="add-day-btn" (click)="addSkiDay()">Skitag hinzufügen</button>
   </div>
+
+  <div class="form-actions">
+    <button class="btn btn-primary" (click)="save()">Speichern</button>
+    <button class="btn btn-secondary" (click)="back()">Zurück</button>
+  </div>
 </div>
 } @else {
-  loading...
+  Wird geladen...
 }
 

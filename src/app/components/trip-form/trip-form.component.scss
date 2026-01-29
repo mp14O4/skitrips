@@ -12,8 +12,6 @@
 
   .header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 
     h1 {
       font-size: 1.8rem;
@@ -142,7 +140,7 @@
     gap: 0.5rem;
     cursor: pointer;
   }
-
+  
   .toggle-destination-btn {
     margin-bottom: 0.5rem; /* Add margin-bottom to button for consistent spacing */
     padding: 0.5rem 1rem;
@@ -156,6 +154,40 @@
 
     &:hover {
       background-color: #e0e0e0;
+    }
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #eee;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &.btn-primary {
+      background-color: #007bff;
+      color: white;
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+
+    &.btn-secondary {
+      background-color: #6c757d;
+      color: white;
+      &:hover {
+        background-color: #5a6268;
+      }
     }
   }
 }

@@ -35,7 +35,7 @@ export class TripListComponent implements OnInit {
 
   onSeasonChange(seasonId: string): void {
     if (seasonId === 'new_season') {
-      const seasonName = prompt('Enter the name for the new season:');
+      const seasonName = prompt('Geben Sie den Namen für die neue Saison ein:');
       if (seasonName) {
         const newSeason = this.tripService.addSeason(seasonName);
         this.seasons = this.tripService.getSeasons();

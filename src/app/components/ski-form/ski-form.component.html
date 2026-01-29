@@ -4,15 +4,15 @@
 
   <div class="general-data">
     <div class="input-item">
-      <label>Company</label>
+      <label>Marke</label>
       <input type="text" [(ngModel)]="ski.brand">
     </div>
     <div class="input-item">
-      <label>Model</label>
+      <label>Modell</label>
       <input type="text" [(ngModel)]="ski.model">
     </div>
     <div class="input-item">
-      <label>Year</label>
+      <label>Jahr</label>
       <input type="number" [(ngModel)]="ski.year">
     </div>
   </div>
@@ -29,7 +29,7 @@
                  (ngModelChange)="updateServiceDate(service, $event)">
         </div>
         <div class="input-item">
-          <label>Jobs</label>
+          <label>Art</label>
           <div class="checkbox-group">
             @for (job of availableJobs; track job) {
               <label class="checkbox-label">
@@ -44,15 +44,15 @@
       </div>
     }
   </div>
-  <button class="add-service-btn" (click)="addService()">Add Service</button>
+  <button class="add-service-btn" (click)="addService()">Service hinzufügen</button>
 
   <div class="form-actions">
-    <button class="btn btn-primary" (click)="save()">Save</button>
-    <button class="btn btn-secondary" (click)="back()">Back</button>
+    <button class="btn btn-primary" (click)="save()">Speichern</button>
+    <button class="btn btn-secondary" (click)="back()">Zurück</button>
   </div>
 </div>
 } @else {
-  loading...
+  Wird geladen...
 }
 
 
