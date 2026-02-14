@@ -12,6 +12,11 @@
   box-sizing: border-box;
 }
 
+.breadcrumbs {
+  display: flex;
+  padding: 1rem;
+}
+
 .trip-list-container {
   width: 100%;
   max-width: 800px; /* Adjust as needed */

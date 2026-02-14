@@ -6,12 +6,14 @@ import {SeasonTripService} from '../../services/season-trip.service';
 import {FormsModule} from '@angular/forms';
 import {SkiDataService} from '../../services/ski-data.service';
 import {SkiDay} from "../../../data/data";
+import {BreadcrumbsComponent, BreadcrumbStep} from '../breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-trip-form',
   imports: [
     DatePipe,
-    FormsModule
+    FormsModule,
+    BreadcrumbsComponent
   ],
   templateUrl: './trip-form.component.html',
   styleUrl: './trip-form.component.scss'
@@ -24,6 +26,7 @@ export class TripFormComponent implements OnInit {
 
   availableSkis: Ski[] = [];
   showDayDestinationInput: Map<string, boolean> = new Map();
+  breadcrumbSteps: BreadcrumbStep[];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,8 +37,20 @@ export class TripFormComponent implements OnInit {
     this.seasonId = this.route.snapshot.params['season'];
     const tripId = this.route.snapshot.params['trip'];
 
+    const season = this.tripService.getSeason(this.seasonId);
+
     this.trip = this.tripService.getTrip(this.seasonId, tripId);
     this.availableSkis = this.skiDataService.getSkis();
+
+    this.breadcrumbSteps = [
+      {
+        name: season?.name ?? '',
+        ref: `/season/c35b76df-e5cc-48c3-b9a4-35bfc00627e1`
+      },
+      {
+        name: this.trip?.destination ?? ''
+      }
+    ]
   }
 
   save(): void {

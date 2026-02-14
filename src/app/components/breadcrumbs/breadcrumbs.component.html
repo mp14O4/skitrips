@@ -1,0 +1,12 @@
+<div class="breadcrumbs">
+  @for (step of steps; track $index) {
+    @if (step.ref) {
+      <a [href]="step.ref">{{ step.name }}</a>
+    } @else {
+      <span>{{ step.name }}</span>
+    }
+    @if (!$last) {
+      <span>&gt;</span>
+    }
+  }
+</div>

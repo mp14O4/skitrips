@@ -5,12 +5,14 @@ import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
 import {generateUuid} from '../../tooling/misc';
 import {FormsModule} from '@angular/forms';
+import {BreadcrumbsComponent, BreadcrumbStep} from '../breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-trip-list',
   imports: [
     DatePipe,
-    FormsModule
+    FormsModule,
+    BreadcrumbsComponent
   ],
   templateUrl: './trip-list.component.html',
   styleUrl: './trip-list.component.scss'

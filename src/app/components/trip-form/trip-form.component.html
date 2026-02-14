@@ -1,5 +1,6 @@
 @if (trip) {
 <div class="trip-form-container">
+  <app-breadcrumbs [steps]="breadcrumbSteps"></app-breadcrumbs>
   <div class="header">
     <h1>
       {{ trip.start | date:'dd.MM.yyyy' }} - {{ trip.skiDays.length }} Tag(e) - {{ trip.destination }}
