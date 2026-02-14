@@ -1,16 +1,7 @@
+<app-breadcrumbs [steps]="breadcrumbSteps"></app-breadcrumbs>
 <div class="trip-list-container">
   <div class="header">
     <h1>Trips</h1>
-    <div class="season-selector">
-      <label for="season-select">Saison:</label>
-      <!-- TODO instead of drag and drop, season page with selection, then this as next layer -->
-      <select id="season-select" [ngModel]="selectedSeason?.id" (ngModelChange)="onSeasonChange($event)">
-        @for (season of seasons; track season.id) {
-          <option [value]="season.id">{{ season.name }}</option>
-        }
-        <option value="new_season">Neue Saison hinzufügen...</option>
-      </select>
-    </div>
     <button class="btn btn-primary" (click)="addTrip()">Trip hinzufügen</button>
   </div>
 

@@ -1,4 +1,6 @@
 <div class="breadcrumbs">
+  <a href="/">Home</a>
+  <span>&gt;</span>
   @for (step of steps; track $index) {
     @if (step.ref) {
       <a [href]="step.ref">{{ step.name }}</a>

@@ -14,13 +14,5 @@ export interface BreadcrumbStep {
 export class BreadcrumbsComponent {
 
   @Input()
-  steps: BreadcrumbStep[] = [
-    {
-      name: "google",
-      ref: "https://google.com/"
-    },
-    {
-      name: "youtube",
-    }
-  ];
+  steps: BreadcrumbStep[] = [];
 }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Season, Trip} from '../../../data/data';
 import {SeasonTripService} from '../../services/season-trip.service';
 import {DatePipe} from '@angular/common';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {generateUuid} from '../../tooling/misc';
 import {FormsModule} from '@angular/forms';
 import {BreadcrumbsComponent, BreadcrumbStep} from '../breadcrumbs/breadcrumbs.component';
@@ -21,18 +21,24 @@ export class TripListComponent implements OnInit {
 
   seasons: Season[] = [];
   selectedSeason?: Season;
+  protected breadcrumbSteps: BreadcrumbStep[];
 
   constructor(
+    private route: ActivatedRoute,
     private readonly tripService: SeasonTripService,
     private readonly router: Router,
   ) {
+    const seasonId = this.route.snapshot.params['season'];
+    this.selectedSeason = this.tripService.getSeason(seasonId);
+
+    this.breadcrumbSteps = [
+      {
+        name: this.selectedSeason?.name ?? ''
+      }
+    ]
   }
 
   ngOnInit(): void {
-    this.seasons = this.tripService.getSeasons();
-    if (this.seasons.length > 0) {
-      this.selectedSeason = this.seasons[0];
-    }
   }
 
   onSeasonChange(seasonId: string): void {
